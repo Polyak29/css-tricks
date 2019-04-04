@@ -1,0 +1,166 @@
+@mixin AnimationG() {
+    width: 288px;
+    height: 3px;
+    background-image: linear-gradient(90deg, #000, #000 75%, transparent 75%, transparent 100%);
+    background-size: 25px 1px;
+    border: none;
+    flex: 0 0 99%;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+}
+
+@mixin AnimationV() {
+    width: 3px;
+    height: 144px;
+    background-image: linear-gradient(180deg,#000,#000 75%,transparent 0,transparent);
+    background-size: 25px 25px;
+    border: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+body {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+  
+  }
+.wrapper {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    background: #8aa5a5;
+    padding: 7px;
+    flex-basis: 350px;
+    width: 300px;
+}
+
+.rect {
+    height: 150px;
+    width: 290px;
+    display: flex;
+    flex-flow: row wrap;
+  
+    &__body {
+        flex: 0 0 98%;
+        margin:0;
+        padding:0;
+    }
+
+
+    &__animation1 {
+       @include AnimationG();
+        &::after{
+            content: "";
+            display: block;
+            background: none;
+            position: relative;
+            height: 100%;
+            width: 100%;
+            animation: 4.7s linear infinite reverse move_1;
+        }
+    }
+
+    &__animation2 {
+        @include AnimationV();
+        &::after{
+            content: "";
+            display: block;
+            background: none;
+            position: relative;
+            width: 100%;
+            animation: 4.7s linear infinite backwards 2.3s move_2;
+        }
+    }    
+
+
+    &__animation3 {
+        @include AnimationG();
+        &::after{
+            content: "";
+            display: block;
+            background: none;
+            position: relative;
+            height: 100%;
+            width: 100%;
+            animation: 4.7s linear infinite backwards 4.7s move_3;
+        }
+
+    }
+
+    &__animation4 {
+        @include AnimationV();
+        &::after{
+            content: "";
+            display: block;
+            background: none;
+            position: relative;
+            width: 100%;
+            animation: 4.7s linear infinite both 7s move_4;
+        }
+
+    }
+
+    &__animation5 {
+        @include AnimationG();
+        &::after{
+            content: "";
+            display: block;
+            background: none;
+            position: relative;
+            height: 100%;
+            width: 100%;
+            animation: 4.7s linear infinite reverse both 9.3s move_5;
+        }
+
+    }
+}
+@mixin framesFromG() {
+    background-color: red;
+    margin-left:-100%;
+    width: 100%;
+}
+@mixin framesToG() {
+    background-color: red;
+    margin-left:100%;
+}      
+
+@mixin framesFromV() {
+    background-color: red;
+    margin-top:-150px;
+    height:100%;
+}
+@mixin framesToV() {
+    background-color: red;
+    margin-top:150px;
+    height:100%;
+    background:red;  
+}   
+
+
+@keyframes move_1 { 
+    from {@include framesFromG();} 
+    to {@include framesToG();}
+}
+
+@keyframes move_2 { 
+    from {@include framesFromV();}
+    to {@include framesToV();}
+}
+
+@keyframes move_3 { 
+    from {@include framesFromG();} 
+    to {@include framesToG();}
+}
+
+@keyframes move_4 { 
+    from {@include framesFromV();}
+    to {@include framesToV();}
+}
+
+@keyframes move_5 { 
+    from {@include framesFromG();} 
+    to {@include framesToG();}
+}
